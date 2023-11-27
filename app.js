@@ -10,16 +10,20 @@ var channel, connection;
 app.use(express.json());
 
 
-const cloudDbUrl = "mongodb+srv://endukuchepala:K@rthik01@credentials.efbelld.mongodb.net/?retryWrites=true&w=majority";
+const username = "hotelmanagement";
+const password = "hotel";
+const cloudDbUrl = "mongodb+srv://"+username +":"+ password+"@hotelmanagement.pbxdsak.mongodb.net/?retryWrites=true&w=majority";
+const cloudamqp = "amqps://sariyfaw:Bpd0xsMTerAir2YQjeUMKXHXvvulXb_V@shark.rmq.cloudamqp.com/sariyfaw";
 const localDburl = "mongodb://localhost/Credentials";
+const localrabbitmq = "amqp://localhost:5672";
 
 (async () => {
-  await mongoose.connect("mongodb://localhost/Credentials");
+  await mongoose.connect(cloudDbUrl);
   console.log("DB connection Established.");
 })();
 
 (async () => {
-  const amqpServer = "amqp://localhost:5672";
+  const amqpServer = cloudamqp;
   connection = await amqp.connect(amqpServer);
   channel = await connection.createChannel();
   await channel.assertQueue("ORDERQUEUE", { durable: true });

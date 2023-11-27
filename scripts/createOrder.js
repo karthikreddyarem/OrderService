@@ -1,4 +1,4 @@
-const itemsSchema = require("../../HotelService/models/ItemsSchema");
+const itemsSchema = require("../models/ItemsSchema");
 const persistOrder = require("./orderDetails");
 
 async function createOrder(products, userId) {
